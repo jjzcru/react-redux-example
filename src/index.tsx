@@ -1,18 +1,12 @@
+// tslint:disable-next-line
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-class App extends React.Component<any, any> {
+import {App } from './components/App';
+import todoApp from './reducers/index';
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            component: <div>loading</div>
-        };
-    }
+let store = createStore(todoApp);
 
-    render() {
-        return (this.state.component);
-    }
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+render(<Provider store={store}><App /></Provider>, document.getElementById('app'));

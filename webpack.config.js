@@ -11,11 +11,11 @@ module.exports = {
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
-    /*resolve: {
+    resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
 	    modules: ['node_modules'],
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
-    },*/
+    },
 
     module: {
         loaders: [
