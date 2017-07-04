@@ -44,12 +44,12 @@ module.exports = {
         inline: true
     },
     plugins: [
-    	new HtmlWebpackPlugin({
-    		title: 'Drev',
-    		filename: 'index.html',
-    		template: './index.html',
-    		inject: true,
-    		hash: true
-    	})
+        new HtmlWebpackPlugin({
+            title: 'Drev Redux',
+            filename: 'index.html',
+            template: './index.html',
+            inject: true,
+            hash: true
+        })
     ]
 };
