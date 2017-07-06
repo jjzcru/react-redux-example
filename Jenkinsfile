@@ -1,40 +1,23 @@
-#!groovy
+pipeline {
+    agent any 
 
-node('node') {
-    currentBuild.result = "SUCCESS"
-
-    try {
-
-       stage('Checkout'){
-          checkout scm
-       }
-
-       stage('Test'){
-
-         env.NODE_ENV = "test"
-
-         print "Environment will be : ${env.NODE_ENV}"
-
-         sh 'node -v'
-         sh 'npm prune'
-         sh 'npm install'
-         sh 'npm test'
-       }
-
-       stage('Build'){
-            sh 'npm run build'
-       }
-
-       stage('Cleanup'){
-
-         echo 'prune and cleanup'
-         sh 'npm prune'
-         sh 'rm node_modules -rf'
-       }
+    stages {
+        stage('Test'){
+            steps {
+                environment { 
+                    NODE_ENV = 'test'
+                }
+                print "Environment will be : ${env.NODE_ENV}"
+                sh 'node -v'
+                sh 'npm prune'
+                sh 'npm install'
+                sh 'npm test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
     }
-    catch (err) {
-        currentBuild.result = "FAILURE"
-        throw err
-    }
-
 }
