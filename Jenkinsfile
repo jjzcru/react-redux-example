@@ -3,10 +3,10 @@ pipeline {
 
     stages {
         stage('Test'){
+            environment { 
+                NODE_ENV = 'test'
+            }
             steps {
-                environment { 
-                    NODE_ENV = 'test'
-                }
                 print "Environment will be : ${env.NODE_ENV}"
                 sh 'node -v'
                 sh 'npm prune'
