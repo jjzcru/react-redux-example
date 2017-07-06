@@ -1,24 +1,31 @@
 import * as React from 'react';
 export default class AddTodoForm extends React.Component<any, any> {
+    private input;
     constructor(props: any) {
         super(props);
+
+        this.addTodo = this.addTodo.bind(this);
+        this.inputNode = this.inputNode.bind(this);
+    }
+
+    private addTodo(event) {
+        event.preventDefault();
+        if (!this.input.value.trim()) {
+            return;
+        }
+        this.props.onSubmit(this.input.value);
+        this.input.value = '';
+    }
+
+    private inputNode(node) {
+        this.input = node;
     }
 
     render() {
-        let input;
         return (
             <div>
-                <form onSubmit={e => {
-                    e.preventDefault();
-                    if (!input.value.trim()) {
-                        return;
-                    }
-                    this.props.onSubmit(input.value);
-                    input.value = '';
-                }}>
-                    <input ref={node => {
-                        input = node;
-                    }} />
+                <form onSubmit={this.addTodo}>
+                    <input ref={this.inputNode} />
                     <button type='submit'>Add Todo</button>
                 </form>
             </div>

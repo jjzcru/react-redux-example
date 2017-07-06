@@ -8,6 +8,10 @@ export const addTodo = (text) => {
 };
 
 export const setVisibilityFilter = (filter) => {
+    console.log({
+        type: 'SET_VISIBILITY_FILTER',
+        filter
+    });
     return {
         type: 'SET_VISIBILITY_FILTER',
         filter

@@ -1,13 +1,13 @@
-import AddTodoForm from '../components/AddTodoForm'
+import AddTodoForm from '../components/AddTodoForm';
 
-import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { connect } from 'react-redux';
+import { addTodo } from '../actions';
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (text) => {
-            dispatch(addTodo(text))
+            dispatch(addTodo(text));
         }
     };
 };
