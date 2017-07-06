@@ -15,8 +15,20 @@ pipeline {
             }
         }
         stage('Build') {
+            environment { 
+                NODE_ENV = 'production'
+            }
             steps {
+                print "Environment will be : ${env.NODE_ENV}"
                 sh 'npm run build'
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                print 'Prune and Cleanup'
+                sh 'npm prune'
+                sh 'rm node_modules -rf'
             }
         }
     }
